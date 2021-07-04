@@ -45,6 +45,7 @@ export class SignUpComponent {
       {
         console.log("user has been added successfully")
         sessionStorage.setItem('ucode',code.toString());
+
        this.router.navigate(['/Main',sessionStorage.getItem('ucode')]);
       }
      else 

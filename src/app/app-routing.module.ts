@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'AddPaymentDetails', component: AddPaymentDetailsComponent },
   { path: 'UpdateUserDetails', component: UpdateUserDetailsComponent },
  
-  { path: 'AddRegularSearch', component: AddRegularSearchComponent },
+  { path: 'AddRegularSearch/:ucode', component: AddRegularSearchComponent,pathMatch:'full'  },
   { path: 'UpdateRegularSearch', component: UpdateRegularSearchComponent }
 ];
 

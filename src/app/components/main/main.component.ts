@@ -16,21 +16,7 @@ export class MainComponent implements OnInit {
   geocoder = new google.maps.Geocoder;
 
 
-  getCenter()
-  {
-   console.log("hey")
-    this.markers.push({
-      position: {
-        lat: this.center.lat ,
-        lng: this.center.lng , 
-      },
-      label: {
-        color: 'red',
-        text: 'Your location',
-      },
-      title: 'Your location',
-    })
-  }
+ 
   center: google.maps.LatLngLiteral ;
   zoom = 17
   
@@ -42,7 +28,6 @@ export class MainComponent implements OnInit {
     minZoom: 8,
   };
   markers: any = [];
-  markers2:any=[];
  
   ngOnInit():void {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -51,6 +36,7 @@ export class MainComponent implements OnInit {
         lng: position.coords.longitude,
       }
     })
+    console.log(this.center.lat,this.center.lng)
     this.markers.push({
       position: {
         lat: this.center.lat ,
@@ -62,21 +48,7 @@ export class MainComponent implements OnInit {
       },
       title: 'Your location',
     })
-    var latitude=this.markers[0].getPosition().lat();               
-var longitude=this.markers[0].getPosition().lng();
-var latlng = {lat: parseFloat(latitude), lng: parseFloat(longitude)};
-
-    this.geocoder.geocode({'location': latlng}, function(results, status) {
-    if (status === google.maps.GeocoderStatus.OK) {
-      if (results[1]) {
-        console.log(results[1].place_id);
-      } else {
-        window.alert('No results found');
-      }
-    } else {
-      window.alert('Geocoder failed due to: ' + status);
-    }
-  });
+   
   }   
 addMarker() {
   this.markers.push({
@@ -101,10 +73,44 @@ imidSearch()
 }
 advancedSearch()
 {
+  this.router.navigate(['AddRegularSearch/',sessionStorage.getItem('ucode')]); 
 
+}
+getCenter()
+{
+if(this.markers[0]==null)
+{
+this.markers.push({
+    position: {
+      lat: this.center.lat ,
+      lng: this.center.lng , 
+    },
+    label: {
+      color: 'red',
+      text: 'Your location',
+    },
+    title: 'Your location',
+  })
+
+}    
 }
 getLocation()
 {
   this.getCenter();
+  var latitude=this.markers[0].position.lat;               
+  var longitude=this.markers[0].position.lng;
+  var latlng = {lat: parseFloat(latitude), lng: parseFloat(longitude)};
+  
+      this.geocoder.geocode({'location': latlng}, function(results, status) {
+      if (status === google.maps.GeocoderStatus.OK) {
+        if (results[1]) {
+          console.log(results[1].place_id);
+        } else {
+          window.alert('No results found');
+        }
+      } else {
+        window.alert('Geocoder failed due to: ' + status);
+      }
+    });
 }
 }

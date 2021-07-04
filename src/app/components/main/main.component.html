@@ -1,8 +1,8 @@
 <div class="map" height="500px">
 <!---->
 <button (click)="imidSearch()">quick search</button><button (click)="advancedSearch()">advanced search</button>
-<google-map class="map" (zoomChanged)="getCenter()" height="500px"
-width="300px"
+<google-map class="map" (zoomChanged)="getCenter()" height="350px"
+width="100%"
 [zoom]="zoom"
 [center]="center"
 [options]="options"> <map-marker

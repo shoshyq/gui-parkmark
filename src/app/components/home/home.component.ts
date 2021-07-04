@@ -24,7 +24,10 @@ enter(frm:any){
   this.newUser.code=usercode; 
   if(usercode!=0&&usercode!=-1)
  {
-  sessionStorage.setItem('ucode',usercode.toString())
+  sessionStorage.setItem('ucode',usercode.toString());
+  sessionStorage.setItem('disable','false');
+  this.disable=(sessionStorage.getItem('disable') ==='true');
+
   console.log(usercode);
    this.router.navigate(['/Main',sessionStorage.getItem('ucode')]);   
  }
@@ -47,7 +50,10 @@ enter(frm:any){
 }
 
 LogIn(){
+        sessionStorage.setItem('disable','false')
+
         this.router.navigate(['/LogIn']);
+  
         this.disable=(sessionStorage.getItem('disable') ==='true');
   }
 SignUp(){
