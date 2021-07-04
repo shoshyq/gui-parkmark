@@ -1,0 +1,14 @@
+.btns{
+    text-align: center;
+    width:40vh;
+    margin: auto; 
+}
+.wrap-div{
+    text-align: start;
+    align-items: center;
+     display: block; 
+    margin: auto;
+    padding: 2% 10%;
+
+}
+
