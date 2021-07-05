@@ -15,7 +15,7 @@ import { UpdateUserDetailsComponent } from './components/update-user-details/upd
 import { FeedbackDetailsComponent } from './components/feedback-details/feedback-details.component';
 import { AddRegularSearchComponent } from './components/add-regular-search/add-regular-search.component';
 import { UpdateRegularSearchComponent } from './components/update-regular-search/update-regular-search.component';
-
+import {AddScheduleComponent} from './components/add-schedule/add-schedule.component';
 const routes: Routes = [
   { path: 'LogIn', component:  LogInComponent},
   { path: 'SignUp', component: SignUpComponent },
@@ -31,7 +31,8 @@ const routes: Routes = [
   { path: 'AddPaymentDetails', component: AddPaymentDetailsComponent },
   { path: 'UpdateUserDetails', component: UpdateUserDetailsComponent },
  
-  { path: 'AddRegularSearch/:ucode', component: AddRegularSearchComponent,pathMatch:'full'  },
+  { path: 'AddRegularSearch/:ucode', component: AddRegularSearchComponent,pathMatch:'full',children: [ 
+    { path: 'AddSchedule', component:  AddScheduleComponent} ]},
   { path: 'UpdateRegularSearch', component: UpdateRegularSearchComponent }
 ];
 

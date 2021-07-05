@@ -37,10 +37,10 @@ export class SignUpComponent {
     
   }
   SignUp(frm:any){
-    console.log(this.newUser.code,this.newUser.username,this.newUser.userpassword);
+    console.log(this.newUser.Code,this.newUser.username,this.newUser.userpassword);
     this.userService.SignUp(this.newUser).subscribe((code: number)=>{
      //לקבל את הקוד חברה שנכנס עכשיו ולשלוח אותו להוספת בחירה
-     this.newUser.code=code; 
+     this.newUser.Code=code; 
      if(code!=0)
       {
         console.log("user has been added successfully")

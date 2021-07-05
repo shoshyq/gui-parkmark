@@ -1,9 +1,11 @@
 export class User{
-    code: number 
-    username: string 
-    userpassword: string 
-    useremail: string 
-    userphone: string 
-    paymentDetails1? : number
+    Code:number 
+    Username:string 
+    UserPassword:string 
+    UserEmail:string 
+    UserPhoneNumber:string 
+    PaymentDetails1? :number
     PaymentDetails2? :number
+
+
 }

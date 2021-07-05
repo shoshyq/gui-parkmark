@@ -4,6 +4,11 @@ import { ViewChild } from '@angular/core';
 //import { GoogleMap, MapInfoWindow } from '@angular/google-maps/';
 import { MapInfoWindow, MapMarker, GoogleMap } from '@angular/google-maps'
 import { GoogleMapsModule } from '@angular/google-maps/';
+import { FormControl, Validators } from '@angular/forms';
+import { ParkSpot } from 'src/app/models/parkspot.model';
+import { Search } from 'src/app/models/search.model';
+import { SearchesService } from 'src/app/services/searches.service';
+import { City } from 'src/app/models/city.models';
 
 @Component({
   selector: 'app-add-regular-search',
@@ -12,90 +17,58 @@ import { GoogleMapsModule } from '@angular/google-maps/';
 })
 export class AddRegularSearchComponent implements OnInit {
   
-  @ViewChild(GoogleMap, { static: false }) map!: GoogleMap 
-  @ViewChild(MapInfoWindow, { static: false }) infoWindow! : MapInfoWindow
-  center!: google.maps.LatLngLiteral ;
-  zoom = 16
-  markers:any;
-  options: google.maps.MapOptions = {
-    zoomControl: true,
-    scrollwheel: true,
-    disableDoubleClickZoom: false,
-  };
-
-  infoContent = '';
-  x:any;
-  constructor() { 
-    
-    navigator.geolocation.getCurrentPosition((position) => {
-      this.center = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
+  selectedCity: string;
+  newSearch:Search = new Search();
+  subscribe:any;
+  cities: City[];
+    addressFormControl = new FormControl('', [
+      Validators.required,
+      ]);
+      formattedaddress=" ";
+      public AddressChange(address: any) {
+      //setting address from API to local variable
+       this.formattedaddress=address.formatted_address
       }
-    })
-    this.markers = [];
-    sessionStorage.setItem('shop','1')
+  constructor(private searchesService:SearchesService,private router: Router) {
+   
   }
-
-  ngOnInit(): void {
-    if (navigator.geolocation) {
-      var location_timeout = setTimeout("geolocFail()", 10000);
   
-      navigator.geolocation.getCurrentPosition((position) => {
-          clearTimeout(location_timeout);
-  
-          var lat = position.coords.latitude;
-          var lng = position.coords.longitude;
-          this.markers.push({
-            position: {
-              lat: this.center.lat ,
-              lng: this.center.lng ,
-            },
-            label: {
-              color: 'red',
-              text: 'Your Location',
-            },
-            title: 'Your location',
-            info: 'Marker info ' + (this.markers.length + 1),
-            options: {
-            },
-          })
-      }, function(error) {
-          clearTimeout(location_timeout);
-      });
-  } else {
-      // Fallback for no geolocation
-  }
- 
-    console.log(this.center)
-    console.log(JSON.stringify(this.map.getCenter()))
-  }
-  click(event: google.maps.MouseEvent) {
-    console.log(event)
-  }
-  center_changed() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((showPosition) =>
-      {
-        this.center = {
-          lat: showPosition.coords.latitude,
-          lng: showPosition.coords.longitude,
-        }
-      });
-    } 
-  }
-  logCenter() {
-    console.log(JSON.stringify(this.map.getCenter()))
-  }
-  getLocation(x:any) {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((showPosition) =>
-      {
-        this.center = {
-          lat: showPosition.coords.latitude,
-          lng: showPosition.coords.longitude,
-        }
-      });
+  ngOnInit()
+  { 
+   this.searchesService.GetCities().subscribe(list=>
+      {       
+            this.cities=list;        
+      });  
     }
+  AddRegularSearch(frm:any){
+  
+    this.searchesService.AddRegularSearch(this.newSearch).subscribe(code=>
+      {
+        this.newSearch.code=code; 
+        if(code!=0)
+         {
+           console.log("search has been added successfully")
+           sessionStorage.setItem('rsearch',code.toString());
+   
+          this.router.navigate(['/Main',sessionStorage.getItem('ucode')]);
+         }
+        else 
+        console.log("something is wrong")
+        });
+    
   }
+  initAutocomplete() {
+  
+  
+    // Create the search box and link it to the UI element.
+    const input = document.getElementById("pac-input") as HTMLInputElement;
+    const searchBox = new google.maps.places.SearchBox(input);  
+    // Bias the SearchBox results towards current map's viewport.
+
+  
+    // Listen for the event fired when the user selects a prediction and retrieve
+    // more details for that place.
+
+      }    // Clear out the old markers.
+
 }

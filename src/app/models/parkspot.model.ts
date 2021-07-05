@@ -1,14 +1,14 @@
 export class ParkSpot{
-code? : number
-userCode? : number
-cityCode? : number
-place_id? : string
-fullAddress? : string
-spotWidth? : number
-spotLength? : number
-pricePerHour? : number
-hasRoof? : boolean
-daysSchedule? : number
-isOccupied? : boolean
-avRegularly? : boolean
+Code? : number
+UserCode? : number
+CityCode? : number
+Place_id? : string
+FullAddress? : string
+SpotWidth? : number
+SpotLength? : number
+PricePerHour? : number
+HasRoof? : boolean
+DaysSchedule? : number
+IsOccupied? : boolean
+AvRegularly? : boolean
 }

@@ -1,8 +1,8 @@
 export class Feedback{
-    code : number
-    describerUserCode? : number
-    descriptedUserCode? : number
-    feedback1 : string
-    rating? : number
+    Code : number
+    DescriberUserCode? : number
+    DescriptedUserCode? : number
+    Feedback1 : string
+    Rating? : number
 
 }

@@ -8,7 +8,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-usercode:number;
+
 newUser:User=new User();
   disable=false;
     constructor(private userService:UserService,private router: Router) { }
@@ -20,7 +20,7 @@ newUser:User=new User();
 
   }
   addRegSearch(){
-    this.router.navigate(['AddRegularSearch/']); 
+    this.router.navigate(['AddRegularSearch/',sessionStorage.getItem('ucode')]); 
 
 }
 feedbacks(){
@@ -47,10 +47,13 @@ updateRegSearch(){
 getuser(){
   this.userService.GetUser(sessionStorage.getItem('ucode')).subscribe(user=>
     {
+     
+      console.log(user)
+
       this.newUser=user; 
-     this.usercode = this.newUser.code
-      console.log(this.newUser.code);
- 
+      console.log(this.newUser.Code)
+      debugger
+   
      })
     }
 

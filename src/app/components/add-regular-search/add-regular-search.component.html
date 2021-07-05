@@ -1,43 +1,79 @@
-<p>add-regular-search works!</p>
-<google-map (centerChanged)="(center_changed())" height="500px"
-width="100%"
-[zoom]="zoom"
-[center]="center"
-[options]="options">  
-<map-marker
-#markerElem
-*ngFor="let marker of markers; index as i"
-[position]="marker.position"
-[label]="marker.label"
-[title]="marker.title"
-[options]="marker.options"
-
->
-<!--<map-marker (mapClick)="pspotinfo(i)"> </map-marker>-->
- </map-marker>
+<div>
+  <form  novalidate  (submit)="AddRegularSearch(frm)" #frm="ngForm">
+      
+    <div>
+    <mat-form-field appearance="fill">
+        <mat-label>Address (destination)</mat-label>
+        <input matInput placeholder="address" style="text-align: left; align-content: flex-end;"  [(ngModel)]="newSearch.myLocationAddress" name="myLocationAddress" type="text" #address="ngModel" required >
+        <mat-error *ngIf="addressFormControl.hasError('required')">
+           Address is required
+        </mat-error>  
+    </mat-form-field>
+    </div>
+    <div>
+      <!--<input ngx-google-places-autocomplete  value="{{formattedaddress}}" (onAddressChange)="AddressChange($event)"/>-->
+  <input id="pac-input"
+  class="controls"
+  type="text"
+  placeholder="Search Box"/>
  
-</google-map>
-<button (click)="logCenter()">Log center</button>
+    </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>City</mat-label>
+        <mat-select [(ngModel)]="selectedCity" name="city">
+          <mat-option>Clear</mat-option>
+          <mat-option>reg</mat-option>
+          <mat-option *ngFor="let city of cities" [value]="city.code">
+            {{city.cityName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <p><mat-checkbox formControlName="sizePref">Size preferences</mat-checkbox></p>
+    </div>
+    <div>
+      <p><mat-checkbox formControlName="roofOpt">Has a roof</mat-checkbox></p>
+    </div>
 
+    <!--<div>
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" placeholder="password" name="userpassword" [(ngModel)]="newUser.userpassword" class="form-control"  #userpassword="ngModel" compare-password="txtConfirmPassword" required minlength="5" maxlength="20">
+    
+    <mat-error *ngIf="passwordFormControl.hasError('required')">
+      Password is required
 
-<p>Click the button to get your coordinates.</p>
+    </mat-error>
+    </mat-form-field>
+    </div>
+   
+        <div>
 
-<button (click)="getLocation(demo)">Try It</button>
+            <mat-form-field appearance="fill">
+              <mat-label>Email</mat-label>
+              <input [(ngModel)]="newUser.useremail" name="useremail"  required type="email" matInput [formControl]="emailFormControl" placeholder="Ex.pat@example.com">
+              <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="emailFormControl.hasError('required')">
+                Email is required
+             
+              </mat-error>
+            </mat-form-field>
 
-<p #demo></p>
+        </div>
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Phone number</mat-label>
+            <input matInput placeholder="phone number"  [(ngModel)]="newUser.userphone" name="userphone" type="text" #userphone="ngModel"  minlength="5" maxlength="20">
+          </mat-form-field>
+     </div>       
+    -->
+    <div class="btnfrm">
+        <button mat-raised-button type="submit" [disabled]="!frm.valid"  class="btnOK" selected>add</button>
 
-<script>
-
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
-
-function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude + 
-  "<br>Longitude: " + position.coords.longitude;
-}
-</script>
+    </div>
+</form>
+</div>

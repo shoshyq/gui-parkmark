@@ -25,7 +25,7 @@ export class LogInComponent implements OnInit {
   enter(frm:any){
     this.userService.Login(this.newUser.username,this.newUser.userpassword).subscribe(usercode=>
   {
-    this.newUser.code=usercode; 
+    this.newUser.Code=usercode; 
     if(usercode!=0&&usercode!=-1)
    {
     sessionStorage.setItem('ucode',usercode.toString())

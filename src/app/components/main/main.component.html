@@ -1,5 +1,7 @@
+<button (click)="imidSearch()">quick search</button><button (click)="advancedSearch()">advanced search</button>
+
 <div class="map" height="500px">
-<!---->
+<!--
 <button (click)="imidSearch()">quick search</button><button (click)="advancedSearch()">advanced search</button>
 <google-map class="map" (zoomChanged)="getCenter()" height="350px"
 width="100%"
@@ -13,6 +15,24 @@ width="100%"
     [options]="marker.options"
   >
   </map-marker>
+</google-map>
+--><google-map (centerChanged)="(center_changed())" height="350px"
+width="100%"
+[zoom]="zoom"
+[center]="center"
+[options]="options">  
+<map-marker
+#markerElem
+*ngFor="let marker of markers; index as i"
+[position]="marker.position"
+[label]="marker.label"
+[title]="marker.title"
+[options]="marker.options"
+
+>
+<!--<map-marker (mapClick)="pspotinfo(i)"> </map-marker>-->
+ </map-marker>
+ 
 </google-map>
 
 </div>

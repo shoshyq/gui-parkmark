@@ -39,9 +39,12 @@ import { PaypalComponent } from './components/paypal/paypal.component';
 import { MapInfoWindow, MapMarker, GoogleMap } from '@angular/google-maps'
 import { GoogleMapsModule } from '@angular/google-maps/';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 
 
 import { } from 'googlemaps';
+import { AddScheduleComponent } from './components/add-schedule/add-schedule.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +64,8 @@ import { } from 'googlemaps';
      FeedbackDetailsComponent,
      AddRegularSearchComponent,
      UpdateRegularSearchComponent,
-     PaypalComponent
+     PaypalComponent,
+     AddScheduleComponent
   ],
   imports: [
     BrowserModule,
@@ -80,6 +84,8 @@ import { } from 'googlemaps';
     MatTabsModule,
     MatButtonModule,
     MatIconModule,
+    MatCheckboxModule,
+    GooglePlaceModule,
     NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [UserService],
