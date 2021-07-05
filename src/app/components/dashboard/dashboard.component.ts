@@ -52,7 +52,7 @@ getuser(){
 
       this.newUser=user; 
       console.log(this.newUser.Code)
-      debugger
+      
    
      })
     }
