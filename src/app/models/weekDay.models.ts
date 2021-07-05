@@ -1,10 +1,13 @@
+import { Hours } from "./hours.model"
+
 export class WeekDay{
 
-    code : number
-    sundayHourQuaters? : number
-    mondayHourQuaters? : number
-    tuedayHourQuaters? : number
-    wednesdayHourQuaters? : number
-    thursdayHourQuaters? : number
-    fridayHourQuaters? : number
+    Code : Hours[]
+    SundayHours? : Hours[]
+    MondayHours? : Hours[]
+    TuedayHours? : Hours[]
+    WednesdayHours? : Hours[]
+    ThursdayHours? : Hours[]
+    FridayHours? : Hours[]
+
 }
