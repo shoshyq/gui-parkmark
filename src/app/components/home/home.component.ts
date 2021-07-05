@@ -19,7 +19,7 @@ constructor(private userService:UserService,private router: Router) { }
 ngOnInit(): void {
 }
 enter(frm:any){
-  this.userService.Login(this.newUser.username,this.newUser.userpassword).subscribe(usercode=>
+  this.userService.Login(this.newUser.Username,this.newUser.UserPassword).subscribe(usercode=>
 {
   this.newUser.Code=usercode; 
   if(usercode!=0&&usercode!=-1)

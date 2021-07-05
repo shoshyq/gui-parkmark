@@ -24,6 +24,10 @@ export class AddRegularSearchComponent implements OnInit {
     addressFormControl = new FormControl('', [
       Validators.required,
       ]);
+      widthFormControl = new FormControl('', [
+        Validators.pattern("^[0-9]*$"),
+        ]);
+
       formattedaddress=" ";
       public AddressChange(address: any) {
       //setting address from API to local variable
@@ -44,7 +48,7 @@ export class AddRegularSearchComponent implements OnInit {
   
     this.searchesService.AddRegularSearch(this.newSearch).subscribe(code=>
       {
-        this.newSearch.code=code; 
+        this.newSearch.Code=code; 
         if(code!=0)
          {
            console.log("search has been added successfully")

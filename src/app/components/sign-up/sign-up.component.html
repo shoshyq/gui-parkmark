@@ -6,7 +6,7 @@
         <div>
         <mat-form-field appearance="fill">
             <mat-label>User name</mat-label>
-            <input matInput placeholder="username"  [(ngModel)]="newUser.username" name="username" type="text" #username="ngModel" required minlength="5" maxlength="30">
+            <input matInput placeholder="username"  [(ngModel)]="newUser.Username" name="Username" type="text" #username="ngModel" required minlength="5" maxlength="30">
             <mat-error *ngIf="usernameFormControl.hasError('required')">
                 Username is required
            
@@ -33,7 +33,7 @@
         <div>
           <mat-form-field appearance="fill">
             <mat-label>Password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" placeholder="password" name="userpassword" [(ngModel)]="newUser.userpassword" class="form-control"  #userpassword="ngModel" compare-password="txtConfirmPassword" required minlength="5" maxlength="20">
+            <input matInput [type]="hide ? 'password' : 'text'" placeholder="password" name="UserPassword" [(ngModel)]="newUser.UserPassword" class="form-control"  #userpassword="ngModel" compare-password="txtConfirmPassword" required minlength="5" maxlength="20">
         
         <mat-error *ngIf="passwordFormControl.hasError('required')">
           Password is required
@@ -46,7 +46,7 @@
     
                 <mat-form-field appearance="fill">
                   <mat-label>Email</mat-label>
-                  <input [(ngModel)]="newUser.useremail" name="useremail"  required type="email" matInput [formControl]="emailFormControl" placeholder="Ex.pat@example.com">
+                  <input [(ngModel)]="newUser.UserEmail" name="UserEmail"  required type="email" matInput [formControl]="emailFormControl" placeholder="Ex.pat@example.com">
                   <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                     Please enter a valid email address
                   </mat-error>
@@ -60,7 +60,7 @@
         <div>
             <mat-form-field appearance="fill">
                 <mat-label>Phone number</mat-label>
-                <input matInput placeholder="phone number"  [(ngModel)]="newUser.userphone" name="userphone" type="text" #userphone="ngModel"  minlength="5" maxlength="20">
+                <input matInput placeholder="phone number"  [(ngModel)]="newUser.UserPhoneNumber" name="UserPhoneNumber" type="text" #userphone="ngModel"  minlength="5" maxlength="20">
               </mat-form-field>
          </div>       
        

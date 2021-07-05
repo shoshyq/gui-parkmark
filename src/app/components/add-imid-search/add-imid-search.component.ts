@@ -44,7 +44,7 @@ export class AddImidSearchComponent implements OnInit {
      if(dic!=null)
       {
         console.log("search has been added successfully")
-        console.log(this.newSearch.code);
+        console.log(this.newSearch.Code);
       }
      else 
      console.log("something's wrong")

@@ -4,28 +4,26 @@
     <div>
     <mat-form-field appearance="fill">
         <mat-label>Address (destination)</mat-label>
-        <input matInput placeholder="address" style="text-align: left; align-content: flex-end;"  [(ngModel)]="newSearch.myLocationAddress" name="myLocationAddress" type="text" #address="ngModel" required >
+        <input matInput placeholder="address" style="text-align: left; align-content: flex-end;"  [(ngModel)]="newSearch.MyLocationAddress" name="myLocationAddress" type="text" #address="ngModel" required >
         <mat-error *ngIf="addressFormControl.hasError('required')">
            Address is required
         </mat-error>  
     </mat-form-field>
     </div>
-    <div>
-      <!--<input ngx-google-places-autocomplete  value="{{formattedaddress}}" (onAddressChange)="AddressChange($event)"/>-->
-  <input id="pac-input"
-  class="controls"
-  type="text"
-  placeholder="Search Box"/>
+    <!--<div>
+      <input ngx-google-places-autocomplete  value="{{formattedaddress}}" (onAddressChange)="AddressChange($event)"/>
+   <input id="pac-input"
+   class="controls"
+   type="text"
+   placeholder="Search Box"/>
  
-    </div>
+    </div>-->
     <div>
       <mat-form-field appearance="fill">
         <mat-label>City</mat-label>
         <mat-select [(ngModel)]="selectedCity" name="city">
-          <mat-option>Clear</mat-option>
-          <mat-option>reg</mat-option>
-          <mat-option *ngFor="let city of cities" [value]="city.code">
-            {{city.cityName}}
+          <mat-option *ngFor="let city of cities" [value]="city.Code">
+            {{city.CityName}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -33,6 +31,14 @@
     <div>
       <p><mat-checkbox formControlName="sizePref">Size preferences</mat-checkbox></p>
     </div>
+    <mat-form-field appearance="fill">
+      <mat-label>Width</mat-label>
+      <input matInput placeholder="width" style="text-align: left; align-content: flex-end; width:50px;"  [(ngModel)]="newSearch.PreferableWidth" name="PreferableWidth" type="text" #width="ngModel" required >
+      <mat-error *ngIf="widthFormControl.hasError('pattern')">
+         Number only
+      </mat-error>  
+  </mat-form-field>
+
     <div>
       <p><mat-checkbox formControlName="roofOpt">Has a roof</mat-checkbox></p>
     </div>

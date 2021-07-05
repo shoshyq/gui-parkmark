@@ -25,7 +25,6 @@ export class UserService {
   }
   GetUser(usercode:string):Observable<User>
   {
-    console.log("before C#")
    return this.http.get<User>(this.url+'/getuser/'+usercode)
   }
 

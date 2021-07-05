@@ -38,10 +38,10 @@ export class AddPaymdetailsComponent implements OnInit {
   ngOnInit(): void {
   }
   AddPaymentDetails(usercode:number,frm:any){
-    console.log(this.newpd.сode,this.newpd.сreditCardNumber,this.newpd.paymentAmount);
+    console.log(this.newpd.Code,this.newpd.CreditCardNumber,this.newpd.PaymentAmount);
     this.paymentService.AddPaymentDetails(this.newpd).subscribe((code: number)=>{
      //לקבל את הקוד חברה שנכנס עכשיו ולשלוח אותו להוספת בחירה
-     this.newpd.сode=code; 
+     this.newpd.Code=code; 
      if(code!=0)
       {
         console.log("payment details have been added successfully")
