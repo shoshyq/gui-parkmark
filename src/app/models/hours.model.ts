@@ -1,5 +1,5 @@
 export class Hours{
 
-    StartHour : number
-    EndHour : number
+    StartHour : string
+    EndHour : string
 }

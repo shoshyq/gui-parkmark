@@ -41,6 +41,8 @@ import { GoogleMapsModule } from '@angular/google-maps/';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import {MatListModule} from '@angular/material/list';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 import { } from 'googlemaps';
@@ -73,12 +75,14 @@ import { AddScheduleComponent } from './components/add-schedule/add-schedule.com
     HttpClientModule,
     CommonModule,
     MatCardModule,
+    MatDividerModule,
     HttpClientJsonpModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatListModule,
     MatSelectModule,
     GoogleMapsModule,
     MatTabsModule,

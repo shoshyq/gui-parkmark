@@ -29,54 +29,72 @@
       </mat-form-field>
     </div>
     <div>
-      <p><mat-checkbox formControlName="sizePref">Size preferences</mat-checkbox></p>
+      <p><mat-checkbox color="primary" formControlName="sizePref" #size [(ngModel)]="newSearch.SizeOpt">Size preferences</mat-checkbox></p>
     </div>
-    <mat-form-field appearance="fill">
+    <div *ngIf="size.checked" style="display: inline-block;">
+<mat-form-field appearance="fill">
       <mat-label>Width</mat-label>
-      <input matInput placeholder="width" style="text-align: left; align-content: flex-end; width:50px;"  [(ngModel)]="newSearch.PreferableWidth" name="PreferableWidth" type="text" #width="ngModel" required >
+      <input matInput placeholder="width" style="text-align: left; align-content: flex-end; width:50px;"  [(ngModel)]="newSearch.PreferableWidth" name="PreferableWidth" type="text" #width="ngModel" >
       <mat-error *ngIf="widthFormControl.hasError('pattern')">
          Number only
       </mat-error>  
   </mat-form-field>
-
-    <div>
-      <p><mat-checkbox formControlName="roofOpt">Has a roof</mat-checkbox></p>
+  <mat-form-field appearance="fill">
+    <mat-label>Length</mat-label>
+    <input matInput placeholder="length" style="text-align: left; align-content: flex-end; width:50px;"  [(ngModel)]="newSearch.PreferableLength" name="PreferableLength" type="text" #length="ngModel" >
+    <mat-error *ngIf="lengthFormControl.hasError('pattern')">
+       Number only
+    </mat-error>  
+</mat-form-field>
     </div>
-
-    <!--<div>
-      <mat-form-field appearance="fill">
-        <mat-label>Password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" placeholder="password" name="userpassword" [(ngModel)]="newUser.userpassword" class="form-control"  #userpassword="ngModel" compare-password="txtConfirmPassword" required minlength="5" maxlength="20">
     
-    <mat-error *ngIf="passwordFormControl.hasError('required')">
-      Password is required
 
-    </mat-error>
-    </mat-form-field>
-    </div>
-   
-        <div>
-
-            <mat-form-field appearance="fill">
-              <mat-label>Email</mat-label>
-              <input [(ngModel)]="newUser.useremail" name="useremail"  required type="email" matInput [formControl]="emailFormControl" placeholder="Ex.pat@example.com">
-              <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                Please enter a valid email address
-              </mat-error>
-              <mat-error *ngIf="emailFormControl.hasError('required')">
-                Email is required
-             
-              </mat-error>
-            </mat-form-field>
-
-        </div>
     <div>
+      <p><mat-checkbox color="primary" #roofOpt formControlName="roofOpt">Has a roof</mat-checkbox></p>
+    </div>
+    <p>Prices:</p>
+    <div  >
+      <mat-form-field appearance="fill" >
+            <input matInput placeholder="00.00"   [(ngModel)]="newSearch.MinPrice" name="MinPrice" type="text" #minprice="ngModel" required >
+            <mat-error *ngIf="minpriceFormControl.hasError('pattern')">
+               Number only
+            </mat-error>  
+        </mat-form-field>
+        <p> - </p>
         <mat-form-field appearance="fill">
-            <mat-label>Phone number</mat-label>
-            <input matInput placeholder="phone number"  [(ngModel)]="newUser.userphone" name="userphone" type="text" #userphone="ngModel"  minlength="5" maxlength="20">
-          </mat-form-field>
-     </div>       
-    -->
+          <input matInput placeholder="00.00"   [(ngModel)]="newSearch.MaxPrice" name="MaxPrice" type="text" #maxprice="ngModel" required >
+          <mat-error *ngIf="maxpriceFormControl.hasError('pattern')">
+             Number only
+          </mat-error>  
+      </mat-form-field>
+      <p>ILS</p>
+    </div>
+          <form>
+            <p>Select days:</p>
+            <ng-multiselect-dropdown
+  [placeholder]="'custom placeholder'"
+  [settings]="dropdownSettings"
+  [data]="dropdownList"
+  [(ngModel)]="selectedItems"
+  (onSelect)="onItemSelect($event)"
+  (onSelectAll)="onSelectAll($event)"
+>
+</ng-multiselect-dropdown>
+<mat-list>
+  <mat-list-item *ngFor="let item of selectedItems">
+    {{item.item_text}}
+    <mat-list *ngIf="item">
+      <mat-list-item *ngFor="let hour of item.hours">
+          <input type="time" ><span> - </span>  <input type="time" >
+          <span (click)="addhours(item)">Add</span>
+          <mat-divider></mat-divider>
+
+      </mat-list-item>
+    </mat-list>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+</mat-list>
+          </form>
     <div class="btnfrm">
         <button mat-raised-button type="submit" [disabled]="!frm.valid"  class="btnOK" selected>add</button>
 
